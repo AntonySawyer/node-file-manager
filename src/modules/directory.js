@@ -18,7 +18,7 @@ export const goToParentDir = () => {
   changeDir('../');
 }
 
-export const goToPath = ({ commandArguments: path }) => {
+export const goToPath = ({ context }, path) => {
   changeDir(path);
 }
 

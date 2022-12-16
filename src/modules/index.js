@@ -7,5 +7,6 @@ export {
 } from './directory.js';
 export {
   catFile,
-  addFile
+  addFile,
+  renameFile
 } from './files.js';

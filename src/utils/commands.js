@@ -6,7 +6,7 @@ const parseCommandFromCliArg = (cliCommand) => {
 
   return {
     command,
-    commandArguments: rest.join(' ')
+    commandArguments: rest
   }
 }
 
@@ -25,5 +25,5 @@ export const resolveCommand = (context, commandFromCli) => {
     return process.emit(ERROR_EVENT.INVALID_COMMAND);
   }
 
-  FM_COMMAND_TO_METHOD_MAP[command].execute.call(null, { context, commandArguments });
+  FM_COMMAND_TO_METHOD_MAP[command].execute.call(null, { context }, ...commandArguments);
 };
