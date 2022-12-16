@@ -9,7 +9,8 @@ import {
   copyFile,
   removeFile,
   moveFile,
-  getOsInfo
+  getOsInfo,
+  printFileHash
 } from '../modules/index.js';
 
 export const FM_COMMANDS = {
@@ -23,7 +24,8 @@ export const FM_COMMANDS = {
   COPY_FILE: 'cp',
   REMOVE_FILE: 'rm',
   MOVE_FILE: 'mv',
-  OS: 'os'
+  OS: 'os',
+  HASH: 'hash'
 };
 
 export const FM_COMMAND_TO_METHOD_MAP = {
@@ -59,5 +61,8 @@ export const FM_COMMAND_TO_METHOD_MAP = {
   },
   [FM_COMMANDS.OS]: {
     execute: (...args) => getOsInfo(...args)
+  },
+  [FM_COMMANDS.HASH]: {
+    execute: (...args) => printFileHash(...args)
   }
 };

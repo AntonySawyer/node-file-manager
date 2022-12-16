@@ -16,3 +16,6 @@ export {
 export {
   getOsInfo
 } from './os.js';
+export {
+  printFileHash
+} from './hash.js';
