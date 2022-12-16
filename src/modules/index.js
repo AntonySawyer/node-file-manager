@@ -5,3 +5,6 @@ export {
   goToPath,
   printListOfFilesAndFolders
 } from './directory.js';
+export {
+  catFile
+} from './files.js';

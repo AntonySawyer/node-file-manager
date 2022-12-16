@@ -2,14 +2,16 @@ import {
   handleExit,
   goToParentDir,
   goToPath,
-  printListOfFilesAndFolders
+  printListOfFilesAndFolders,
+  catFile
 } from '../modules/index.js';
 
 export const FM_COMMANDS = {
   EXIT: '.exit',
   UP: 'up',
   CD: 'cd',
-  LS: 'ls'
+  LS: 'ls',
+  CAT_FILE: 'cat'
 };
 
 export const FM_COMMAND_TO_METHOD_MAP = {
@@ -24,5 +26,8 @@ export const FM_COMMAND_TO_METHOD_MAP = {
   },
   [FM_COMMANDS.LS]: {
     execute: printListOfFilesAndFolders
+  },
+  [FM_COMMANDS.CAT_FILE]: {
+    execute: (...args) => catFile(...args)
   }
 };
