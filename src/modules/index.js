@@ -1,4 +1,3 @@
-export { handleExit } from './generalModule.js';
 export {
   getStartDir,
   goToParentDir,

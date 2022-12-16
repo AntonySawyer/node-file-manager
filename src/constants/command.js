@@ -1,5 +1,4 @@
 import {
-  handleExit,
   goToParentDir,
   goToPath,
   printListOfFilesAndFolders,
@@ -32,47 +31,22 @@ export const FM_COMMANDS = {
   DECOMPRESS: 'decompress'
 };
 
+export const FM_COMMANDS_NOT_FOR_RESOLVER = [
+  FM_COMMANDS.EXIT
+];
+
 export const FM_COMMAND_TO_METHOD_MAP = {
-  [FM_COMMANDS.EXIT]: {
-    execute: (...args) => handleExit(...args)
-  },
-  [FM_COMMANDS.UP]: {
-    execute: goToParentDir
-  },
-  [FM_COMMANDS.CD]: {
-    execute: (...args) => goToPath(...args)
-  },
-  [FM_COMMANDS.LS]: {
-    execute: printListOfFilesAndFolders
-  },
-  [FM_COMMANDS.CAT_FILE]: {
-    execute: (...args) => catFile(...args)
-  },
-  [FM_COMMANDS.ADD_FILE]: {
-    execute: (...args) => addFile(...args)
-  },
-  [FM_COMMANDS.RENAME_FILE]: {
-    execute: (...args) => renameFile(...args)
-  },
-  [FM_COMMANDS.COPY_FILE]: {
-    execute: (...args) => copyFile(...args)
-  },
-  [FM_COMMANDS.REMOVE_FILE]: {
-    execute: (...args) => removeFile(...args)
-  },
-  [FM_COMMANDS.MOVE_FILE]: {
-    execute: (...args) => moveFile(...args)
-  },
-  [FM_COMMANDS.OS]: {
-    execute: (...args) => getOsInfo(...args)
-  },
-  [FM_COMMANDS.HASH]: {
-    execute: (...args) => printFileHash(...args)
-  },
-  [FM_COMMANDS.COMPRESS]: {
-    execute: (...args) => compress(...args)
-  },
-  [FM_COMMANDS.DECOMPRESS]: {
-    execute: (...args) => decompress(...args)
-  }
+  [FM_COMMANDS.UP]: goToParentDir,
+  [FM_COMMANDS.CD]: goToPath,
+  [FM_COMMANDS.LS]: printListOfFilesAndFolders,
+  [FM_COMMANDS.CAT_FILE]: catFile,
+  [FM_COMMANDS.ADD_FILE]: addFile,
+  [FM_COMMANDS.RENAME_FILE]: renameFile,
+  [FM_COMMANDS.COPY_FILE]: copyFile,
+  [FM_COMMANDS.REMOVE_FILE]: removeFile,
+  [FM_COMMANDS.MOVE_FILE]: moveFile,
+  [FM_COMMANDS.OS]: getOsInfo,
+  [FM_COMMANDS.HASH]: printFileHash,
+  [FM_COMMANDS.COMPRESS]: compress,
+  [FM_COMMANDS.DECOMPRESS]: decompress
 };

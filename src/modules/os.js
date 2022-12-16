@@ -35,7 +35,7 @@ const printArchitectureInfo = () => {
   console.log(`Node.js binary has compiled for ${arch}`);
 }
 
-export const getOsInfo = ({ context }, flag) => {
+export const getOsInfo = (flag) => {
   switch (flag) {
     case OS_FLAG.EOL:
       return printEolInfo();

@@ -15,7 +15,7 @@ export const goToParentDir = () => {
   changeDir('../');
 }
 
-export const goToPath = ({ context }, path) => {
+export const goToPath = (path) => {
   changeDir(path);
 }
 

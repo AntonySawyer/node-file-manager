@@ -17,14 +17,12 @@ sayWorkingDirectory();
 
 const readlineInterface = readline.createInterface(process.stdin, process.stdout);
 
-const contextForHandlers = {
-  readlineInterface
-}
-
 readlineInterface.on('line', async (command) => {
-  await resolveCommand.call(null, contextForHandlers, command);
+  await resolveCommand(command);
 
-  if (command !== FM_COMMANDS.EXIT) {
+  if (command === FM_COMMANDS.EXIT) {
+    readlineInterface.close();
+  } else {
     sayWorkingDirectory();
   }
 });

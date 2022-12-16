@@ -5,7 +5,3 @@ export const initApp = () => {
 
   process.chdir(startDir);
 }
-
-export const handleExit = ({ context }) => {
-  context.readlineInterface.close();
-};

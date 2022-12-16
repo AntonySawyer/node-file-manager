@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 
 
-export const catFile = async ({ context }, filePath) => {
+export const catFile = async (filePath) => {
   try {
     const fileReadStream = (await fs.open(filePath)).createReadStream({ encoding: 'utf-8' });
 
@@ -13,7 +13,7 @@ export const catFile = async ({ context }, filePath) => {
   }
 };
 
-export const addFile = async ({ context }, fileName) => {
+export const addFile = async (fileName) => {
   try {
     await fs.writeFile(fileName, '', { encoding: 'utf-8' });
   } catch (error) {
@@ -21,7 +21,7 @@ export const addFile = async ({ context }, fileName) => {
   }
 };
 
-export const renameFile = async ({ context }, filePath, newFileName) => {
+export const renameFile = async (filePath, newFileName) => {
   try {
     await fs.rename(filePath, newFileName)
   } catch (error) {
@@ -29,9 +29,9 @@ export const renameFile = async ({ context }, filePath, newFileName) => {
   }
 };
 
-export const copyFile = async (options, filePath, newFilePath) => {
+export const copyFile = async (filePath, newFilePath) => {
   try {
-    await addFile(options, newFilePath);
+    await addFile(newFilePath);
     const fileReadStream = (await fs.open(filePath)).createReadStream({ encoding: 'utf-8' });
     const fileWriteStream = (await fs.open(newFilePath, 'w')).createWriteStream({ encoding: 'utf-8' });
 
@@ -43,7 +43,7 @@ export const copyFile = async (options, filePath, newFilePath) => {
   }
 };
 
-export const removeFile = async ({ context }, filePath) => {
+export const removeFile = async (filePath) => {
   try {
     await fs.rm(filePath);
   } catch (error) {
@@ -51,10 +51,10 @@ export const removeFile = async ({ context }, filePath) => {
   }
 };
 
-export const moveFile = async (options, filePath, newFilePath) => {
+export const moveFile = async (filePath, newFilePath) => {
   try {
-    await copyFile(options, filePath, newFilePath);
-    await removeFile(options, filePath);
+    await copyFile(filePath, newFilePath);
+    await removeFile(filePath);
   } catch (error) {
     throw new Error(error);
   }

@@ -1,4 +1,4 @@
-import { FM_COMMANDS, FM_COMMAND_TO_METHOD_MAP } from "../constants/command.js";
+import { FM_COMMANDS, FM_COMMANDS_NOT_FOR_RESOLVER, FM_COMMAND_TO_METHOD_MAP } from "../constants/command.js";
 import { ERROR_CODE, ERROR_MESSAGE } from "../constants/error.js";
 import { handleError } from '../utils/error.js';
 
@@ -18,7 +18,11 @@ const isCommandValid = (command) => {
   return isValid;
 }
 
-export const resolveCommand = async (context, commandFromCli) => {
+const isResolverShouldSkipCommand = (command) => (
+  FM_COMMANDS_NOT_FOR_RESOLVER.includes(command)
+);
+
+export const resolveCommand = async (commandFromCli) => {
   const { commandArguments, command } = parseCommandFromCliArg(commandFromCli);
   const isCommandAllowed = isCommandValid(command);
 
@@ -30,8 +34,16 @@ export const resolveCommand = async (context, commandFromCli) => {
     return;
   }
 
+  const shouldSkip = isResolverShouldSkipCommand(command);
+
+  if (shouldSkip) {
+    return;
+  }
+
   try {
-    await FM_COMMAND_TO_METHOD_MAP[command].execute.call(null, { context }, ...commandArguments);
+    const commandHandler = FM_COMMAND_TO_METHOD_MAP[command];
+
+    await commandHandler(...commandArguments);
   } catch (error) {
     handleError(error, ERROR_CODE.EXECUTION_FAIL);
   }
