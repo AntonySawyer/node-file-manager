@@ -19,3 +19,7 @@ export {
 export {
   printFileHash
 } from './hash.js';
+export {
+  compress,
+  decompress
+} from './compression.js';

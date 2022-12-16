@@ -10,7 +10,9 @@ import {
   removeFile,
   moveFile,
   getOsInfo,
-  printFileHash
+  printFileHash,
+  compress,
+  decompress
 } from '../modules/index.js';
 
 export const FM_COMMANDS = {
@@ -25,7 +27,9 @@ export const FM_COMMANDS = {
   REMOVE_FILE: 'rm',
   MOVE_FILE: 'mv',
   OS: 'os',
-  HASH: 'hash'
+  HASH: 'hash',
+  COMPRESS: 'compress',
+  DECOMPRESS: 'decompress'
 };
 
 export const FM_COMMAND_TO_METHOD_MAP = {
@@ -64,5 +68,11 @@ export const FM_COMMAND_TO_METHOD_MAP = {
   },
   [FM_COMMANDS.HASH]: {
     execute: (...args) => printFileHash(...args)
+  },
+  [FM_COMMANDS.COMPRESS]: {
+    execute: (...args) => compress(...args)
+  },
+  [FM_COMMANDS.DECOMPRESS]: {
+    execute: (...args) => decompress(...args)
   }
 };
