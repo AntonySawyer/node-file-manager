@@ -10,5 +10,6 @@ export {
   addFile,
   renameFile,
   copyFile,
-  removeFile
+  removeFile,
+  moveFile
 } from './files.js';

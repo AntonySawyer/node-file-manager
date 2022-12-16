@@ -7,7 +7,8 @@ import {
   addFile,
   renameFile,
   copyFile,
-  removeFile
+  removeFile,
+  moveFile
 } from '../modules/index.js';
 
 export const FM_COMMANDS = {
@@ -19,7 +20,8 @@ export const FM_COMMANDS = {
   ADD_FILE: 'add',
   RENAME_FILE: 'rn',
   COPY_FILE: 'cp',
-  REMOVE_FILE: 'rm'
+  REMOVE_FILE: 'rm',
+  MOVE_FILE: 'mv'
 };
 
 export const FM_COMMAND_TO_METHOD_MAP = {
@@ -49,5 +51,8 @@ export const FM_COMMAND_TO_METHOD_MAP = {
   },
   [FM_COMMANDS.REMOVE_FILE]: {
     execute: (...args) => removeFile(...args)
+  },
+  [FM_COMMANDS.MOVE_FILE]: {
+    execute: (...args) => moveFile(...args)
   }
 };

@@ -51,3 +51,12 @@ export const removeFile = async ({ context }, filePath) => {
     process.emit(ERROR_EVENT.EXECUTION_FAIL);
   }
 };
+
+export const moveFile = async (options, filePath, newFilePath) => {
+  try {
+    await copyFile(options, filePath, newFilePath);
+    await removeFile(options, filePath);
+  } catch (error) {
+    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+  }
+};
