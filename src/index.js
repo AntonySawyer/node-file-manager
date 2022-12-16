@@ -1,4 +1,5 @@
 import * as readline from 'readline/promises';
+import { FM_COMMANDS } from './constants/command.js';
 
 import { CLI_ARGUMENT_NAME } from './constants/main.js';
 import { initApp } from './modules/generalModule.js';
@@ -20,7 +21,13 @@ const contextForHandlers = {
   readlineInterface
 }
 
-readlineInterface.on('line', resolveCommand.bind(null, contextForHandlers));
+readlineInterface.on('line', async (command) => {
+  await resolveCommand.call(null, contextForHandlers, command);
+
+  if (command !== FM_COMMANDS.EXIT) {
+    sayWorkingDirectory();
+  }
+});
 
 readlineInterface.on('close', () => {
   sayByeToUser(userName);

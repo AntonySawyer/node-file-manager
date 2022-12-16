@@ -1,13 +1,11 @@
 import os from 'os';
 import fs from 'fs/promises';
 
-import { sayWorkingDirectory } from '../utils/messages.js';
 import { ERROR_EVENT } from '../constants/error.js';
 import { DIR_ENTRY_TYPE } from '../constants/main.js';
 
 const changeDir = (targetDir) => {
   process.chdir(targetDir);
-  sayWorkingDirectory();
 }
 
 export const getStartDir = () => (
@@ -22,9 +20,9 @@ export const goToPath = ({ context }, path) => {
   changeDir(path);
 }
 
-const sortDirEntryByType = (firstEntry, secondEntry) => {
+const comparatorByTypeAndName = (firstEntry, secondEntry) => {
   if (firstEntry.type === secondEntry.type) {
-    return 0
+    return firstEntry.name.localeCompare(secondEntry.name);
   }
 
   return firstEntry.type === DIR_ENTRY_TYPE.FILE ? 1 : -1
@@ -39,7 +37,9 @@ export const printListOfFilesAndFolders = async () => {
       type: el.isFile() ? DIR_ENTRY_TYPE.FILE : DIR_ENTRY_TYPE.DIRECTORY
     }));
 
-    const tableData = dirFilesAndFolders.sort(sortDirEntryByType);
+    const tableData = dirFilesAndFolders
+      .sort(comparatorByTypeAndName);
+
     console.table(tableData);
   } catch (error) {
     process.emit(ERROR_EVENT.EXECUTION_FAIL);

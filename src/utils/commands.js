@@ -1,5 +1,5 @@
 import { FM_COMMANDS, FM_COMMAND_TO_METHOD_MAP } from "../constants/command.js";
-import { ERROR_EVENT, ERROR_MESSAGE } from "../constants/error.js";
+import { ERROR_EVENT } from "../constants/error.js";
 
 const parseCommandFromCliArg = (cliCommand) => {
   const [command, ...rest] = cliCommand.split(' ');
@@ -17,13 +17,15 @@ const isCommandValid = (command) => {
   return isValid;
 }
 
-export const resolveCommand = (context, commandFromCli) => {
+export const resolveCommand = async (context, commandFromCli) => {
   const { commandArguments, command } = parseCommandFromCliArg(commandFromCli);
   const isCommandAllowed = isCommandValid(command);
 
   if (!isCommandAllowed) {
-    return process.emit(ERROR_EVENT.INVALID_COMMAND);
+    process.emit(ERROR_EVENT.INVALID_COMMAND);
+
+    return;
   }
 
-  FM_COMMAND_TO_METHOD_MAP[command].execute.call(null, { context }, ...commandArguments);
+  await FM_COMMAND_TO_METHOD_MAP[command].execute.call(null, { context }, ...commandArguments);
 };
