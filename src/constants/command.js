@@ -3,7 +3,8 @@ import {
   goToParentDir,
   goToPath,
   printListOfFilesAndFolders,
-  catFile
+  catFile,
+  addFile
 } from '../modules/index.js';
 
 export const FM_COMMANDS = {
@@ -11,7 +12,8 @@ export const FM_COMMANDS = {
   UP: 'up',
   CD: 'cd',
   LS: 'ls',
-  CAT_FILE: 'cat'
+  CAT_FILE: 'cat',
+  ADD_FILE: 'add'
 };
 
 export const FM_COMMAND_TO_METHOD_MAP = {
@@ -29,5 +31,8 @@ export const FM_COMMAND_TO_METHOD_MAP = {
   },
   [FM_COMMANDS.CAT_FILE]: {
     execute: (...args) => catFile(...args)
+  },
+  [FM_COMMANDS.ADD_FILE]: {
+    execute: (...args) => addFile(...args)
   }
 };

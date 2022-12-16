@@ -11,3 +11,11 @@ export const catFile = async ({ commandArguments: filePath }) => {
     process.emit(ERROR_EVENT.EXECUTION_FAIL);
   }
 };
+
+export const addFile = async ({ commandArguments: fileName }) => {
+  try {
+    fs.writeFile(fileName, '', { encoding: 'utf-8' });
+  } catch (error) {
+    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+  }
+};

@@ -6,5 +6,6 @@ export {
   printListOfFilesAndFolders
 } from './directory.js';
 export {
-  catFile
+  catFile,
+  addFile
 } from './files.js';
