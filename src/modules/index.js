@@ -9,5 +9,6 @@ export {
   catFile,
   addFile,
   renameFile,
-  copyFile
+  copyFile,
+  removeFile
 } from './files.js';

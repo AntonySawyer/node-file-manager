@@ -40,7 +40,14 @@ export const copyFile = async (options, filePath, newFilePath) => {
       fileWriteStream.write(chunk);
     });
   } catch (error) {
-    console.log('error: ', error)
+    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+  }
+};
+
+export const removeFile = async ({ context }, filePath) => {
+  try {
+    await fs.rm(filePath);
+  } catch (error) {
     process.emit(ERROR_EVENT.EXECUTION_FAIL);
   }
 };
