@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 
-import { ERROR_EVENT } from '../constants/error.js';
 
 export const catFile = async ({ context }, filePath) => {
   try {
@@ -10,7 +9,7 @@ export const catFile = async ({ context }, filePath) => {
       console.log(chunk)
     ));
   } catch (error) {
-    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+    throw new Error(error);
   }
 };
 
@@ -18,7 +17,7 @@ export const addFile = async ({ context }, fileName) => {
   try {
     await fs.writeFile(fileName, '', { encoding: 'utf-8' });
   } catch (error) {
-    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+    throw new Error(error);
   }
 };
 
@@ -26,7 +25,7 @@ export const renameFile = async ({ context }, filePath, newFileName) => {
   try {
     await fs.rename(filePath, newFileName)
   } catch (error) {
-    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+    throw new Error(error);
   }
 };
 
@@ -40,7 +39,7 @@ export const copyFile = async (options, filePath, newFilePath) => {
       fileWriteStream.write(chunk);
     });
   } catch (error) {
-    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+    throw new Error(error);
   }
 };
 
@@ -48,7 +47,7 @@ export const removeFile = async ({ context }, filePath) => {
   try {
     await fs.rm(filePath);
   } catch (error) {
-    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+    throw new Error(error);
   }
 };
 
@@ -57,6 +56,6 @@ export const moveFile = async (options, filePath, newFilePath) => {
     await copyFile(options, filePath, newFilePath);
     await removeFile(options, filePath);
   } catch (error) {
-    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+    throw new Error(error);
   }
 };

@@ -1,7 +1,8 @@
 import os from 'os';
 
-import { ERROR_EVENT } from '../constants/error.js';
 import { OS_FLAG } from '../constants/osFlag.js';
+import { ERROR_MESSAGE } from "../constants/error.js";
+
 
 const printEolInfo = () => {
   const eolValueToPrint = JSON.stringify(os.EOL);
@@ -52,8 +53,6 @@ export const getOsInfo = ({ context }, flag) => {
       return printArchitectureInfo();
 
     default:
-      process.emit(ERROR_EVENT.INVALID_COMMAND);
-
-      break;
+      throw new Error(ERROR_MESSAGE.INVALID_COMMAND);
   }
 }

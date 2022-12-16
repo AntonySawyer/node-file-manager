@@ -3,7 +3,7 @@ export const ERROR_MESSAGE = {
   EXECUTION_FAIL: 'Operation failed'
 }
 
-export const ERROR_EVENT = {
+export const ERROR_CODE = {
   INVALID_COMMAND: 'INVALID_COMMAND',
   EXECUTION_FAIL: 'EXECUTION_FAIL'
 }

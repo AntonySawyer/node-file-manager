@@ -1,7 +1,6 @@
 import os from 'os';
 import fs from 'fs/promises';
 
-import { ERROR_EVENT } from '../constants/error.js';
 import { DIR_ENTRY_TYPE } from '../constants/main.js';
 
 const changeDir = (targetDir) => {
@@ -42,6 +41,6 @@ export const printListOfFilesAndFolders = async () => {
 
     console.table(tableData);
   } catch (error) {
-    process.emit(ERROR_EVENT.EXECUTION_FAIL);
+    throw new Error(error);
   }
 }

@@ -2,10 +2,14 @@ import fs from 'fs/promises';
 import { createBrotliDecompress, createBrotliCompress } from 'zlib';
 
 const applyCompressModifier = async (compressor, pathFrom, pathTo) => {
-  const fileReadStream = (await fs.open(pathFrom)).createReadStream();
-  const fileWriteStream = (await fs.open(pathTo, 'w')).createWriteStream();
+  try {
+    const fileReadStream = (await fs.open(pathFrom)).createReadStream();
+    const fileWriteStream = (await fs.open(pathTo, 'w')).createWriteStream();
 
-  fileReadStream.pipe(compressor).pipe(fileWriteStream);
+    fileReadStream.pipe(compressor).pipe(fileWriteStream);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 export const compress = async (options, pathFrom, pathTo) => {
