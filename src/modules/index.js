@@ -13,3 +13,6 @@ export {
   removeFile,
   moveFile
 } from './files.js';
+export {
+  getOsInfo
+} from './os.js';

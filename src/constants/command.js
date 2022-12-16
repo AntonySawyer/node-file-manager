@@ -8,7 +8,8 @@ import {
   renameFile,
   copyFile,
   removeFile,
-  moveFile
+  moveFile,
+  getOsInfo
 } from '../modules/index.js';
 
 export const FM_COMMANDS = {
@@ -21,7 +22,8 @@ export const FM_COMMANDS = {
   RENAME_FILE: 'rn',
   COPY_FILE: 'cp',
   REMOVE_FILE: 'rm',
-  MOVE_FILE: 'mv'
+  MOVE_FILE: 'mv',
+  OS: 'os'
 };
 
 export const FM_COMMAND_TO_METHOD_MAP = {
@@ -54,5 +56,8 @@ export const FM_COMMAND_TO_METHOD_MAP = {
   },
   [FM_COMMANDS.MOVE_FILE]: {
     execute: (...args) => moveFile(...args)
+  },
+  [FM_COMMANDS.OS]: {
+    execute: (...args) => getOsInfo(...args)
   }
 };
