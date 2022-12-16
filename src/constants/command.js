@@ -1,13 +1,15 @@
 import {
   handleExit,
   goToParentDir,
-  goToPath
+  goToPath,
+  printListOfFilesAndFolders
 } from '../modules/index.js';
 
 export const FM_COMMANDS = {
   EXIT: '.exit',
   UP: 'up',
-  CD: 'cd'
+  CD: 'cd',
+  LS: 'ls'
 };
 
 export const FM_COMMAND_TO_METHOD_MAP = {
@@ -19,5 +21,8 @@ export const FM_COMMAND_TO_METHOD_MAP = {
   },
   [FM_COMMANDS.CD]: {
     execute: (...args) => goToPath(...args)
+  },
+  [FM_COMMANDS.LS]: {
+    execute: printListOfFilesAndFolders
   }
 };
