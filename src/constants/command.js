@@ -5,7 +5,8 @@ import {
   printListOfFilesAndFolders,
   catFile,
   addFile,
-  renameFile
+  renameFile,
+  copyFile
 } from '../modules/index.js';
 
 export const FM_COMMANDS = {
@@ -15,7 +16,8 @@ export const FM_COMMANDS = {
   LS: 'ls',
   CAT_FILE: 'cat',
   ADD_FILE: 'add',
-  RENAME_FILE: 'rn'
+  RENAME_FILE: 'rn',
+  COPY_FILE: 'cp'
 };
 
 export const FM_COMMAND_TO_METHOD_MAP = {
@@ -39,5 +41,8 @@ export const FM_COMMAND_TO_METHOD_MAP = {
   },
   [FM_COMMANDS.RENAME_FILE]: {
     execute: (...args) => renameFile(...args)
+  },
+  [FM_COMMANDS.COPY_FILE]: {
+    execute: (...args) => copyFile(...args)
   }
 };

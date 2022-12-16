@@ -8,5 +8,6 @@ export {
 export {
   catFile,
   addFile,
-  renameFile
+  renameFile,
+  copyFile
 } from './files.js';
