@@ -12,7 +12,7 @@ const applyCompressModifier = async (compressor, pathFrom, pathTo) => {
   }
 }
 
-export const compress = async (options, pathFrom, pathTo) => {
+export const compress = async (pathFrom, pathTo) => {
   const compressor = createBrotliCompress();
   try {
     await applyCompressModifier(compressor, pathFrom, pathTo);
@@ -21,7 +21,7 @@ export const compress = async (options, pathFrom, pathTo) => {
   }
 }
 
-export const decompress = async (options, pathFrom, pathTo) => {
+export const decompress = async (pathFrom, pathTo) => {
   const decompressor = createBrotliDecompress();
   try {
     await applyCompressModifier(decompressor, pathFrom, pathTo);
